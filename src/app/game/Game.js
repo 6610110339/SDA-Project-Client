@@ -443,13 +443,13 @@ export default function Game() {
           setCharactersDamage((Number(userData.character.Value_Level) * 1) + 1);
           setCharactersMaxHP((Number(userData.character.Value_Level) * 15) + 5);
           setCharactersHP((Number(userData.character.Value_Level) * 15) + 5);
-          setCharactersDefense((Number(userData.character.Value_Level) * 1) + 1);
+          setCharactersDefense((Number(userData.character.Value_Level) * 0.5) + 1);
           setCharactersBonusSkill((Number(userData.character.Value_Level) * 1) + 1)
         } else {
           setCharactersDamage((userData.upgrade.Upgrade_Damage * 1) + (Number(userData.character.Value_Level) * 1) + 1);
-          setCharactersMaxHP((userData.upgrade.Upgrade_Health * 2) + (Number(userData.character.Value_Level) * 15) + 5);
-          setCharactersHP((userData.upgrade.Upgrade_Health * 2) + (Number(userData.character.Value_Level) * 15) + 5);
-          setCharactersDefense((userData.upgrade.Upgrade_Defense * 1) + (Number(userData.character.Value_Level) * 1) + 1);
+          setCharactersMaxHP((userData.upgrade.Upgrade_Health * 4) + (Number(userData.character.Value_Level) * 15) + 5);
+          setCharactersHP((userData.upgrade.Upgrade_Health * 4) + (Number(userData.character.Value_Level) * 15) + 5);
+          setCharactersDefense((userData.upgrade.Upgrade_Defense * 0.5) + (Number(userData.character.Value_Level) * 1) + 1);
           setCharactersBonusSkill((userData.upgrade.Upgrade_Skill * 1) + (Number(userData.character.Value_Level) * 1) + 1);
         };
         setIsCharactersDefeated(false);

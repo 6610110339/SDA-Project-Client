@@ -343,7 +343,7 @@ export default function Shop() {
             >
               <div style={{ flexGrow: 1 }}>
                 <p style={{ height: "5px" }}><strong>Current Level: {userData?.upgrade?.Upgrade_Health ?? "?"}</strong></p>
-                <p style={{ height: "5px" }}><strong>Bonus Stats: +{(Number(userData?.upgrade?.Upgrade_Health) * 2)} ❤️ Health</strong></p>
+                <p style={{ height: "5px" }}><strong>Bonus Stats: +{(Number(userData?.upgrade?.Upgrade_Health) * 4)} ❤️ Health</strong></p>
                 <p style={{ height: "20px" }}><strong>Upgrade Cost: {upgadeCost.Upgrade_Health + (Number(userData?.upgrade?.Upgrade_Health) * upgadeCost.Upgrade_Health)} Coins</strong></p>
                 <button type="button" className="btn btn-outline-primary"
                   onClick={() => handleUpgradeConfirm("Upgrade_Health")}
