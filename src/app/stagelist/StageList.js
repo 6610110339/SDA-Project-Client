@@ -16,6 +16,7 @@ export default function Admin() {
   const [userData, setUserData] = useState(null);
   const [token, setToken] = useState(null);
   const [userCharacters, setUserCharacters] = useState(null);
+  const [showCreateUpgrade, setShowCreateUpgrade] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [showClassPopup, setShowClassPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,11 +55,67 @@ export default function Admin() {
           return;
         };
 
+        if (!userData.skill) {
+          setShowCreateUpgrade(true);
+          handleCreate(userData, token);
+          setTimeout(() => {
+            setShowCreateUpgrade(false);
+            setIsLoading(false);
+            fetchUserRole();
+          }, 1500);
+        } else {
+          setIsLoading(false);
+        }
+
         setIsLoading(false);
 
       } catch (error) {
         console.error("Error fetching user role:", error);
         setUserRole("NULL");
+      }
+    };
+
+    const handleCreate = async (userData, token) => {
+      try {
+        if (isCreating) return;
+        setIsCreating(true);
+        const userDocumentId = String(userData.documentId);
+
+        const response = await fetch(`${strapiUrl}/api/skills?populate=*&filters[owner][documentId][$eq]=${userDocumentId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await response.json();
+
+        if (!data.data || data.data.length > 1) {
+          throw new Error("Error!");
+        };
+
+        const newData = {
+          Skill_ID: "FIRE_BALL",
+          Skill_Name: "Fire Ball",
+          Skill_Level: 1,
+          Skill_BaseDamage: 4,
+          owner: userData.documentId
+        };
+
+        const updateResponse = await fetch(`${strapiUrl}/api/skills`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ data: newData }),
+        });
+
+        if (!updateResponse.ok) {
+          throw new Error("Error!");
+        }
+
+        setIsCreating(false);
+        return true;
+
+      } catch (error) {
+        console.error("Error Creating Upgrade:", error);
       }
     };
 
@@ -214,6 +271,15 @@ export default function Admin() {
         <Modal.Footer>
           <button type="button" className="btn btn-outline-danger" disabled={isOpening} onClick={() => { handleAttack(selectedStage?.key) }}>Attack</button>
         </Modal.Footer>
+      </Modal>
+
+      <Modal show={showCreateUpgrade} backdrop="static" keyboard={false} centered>
+        <Modal.Header>
+          <Modal.Title>Please wait</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Loading...</p>
+        </Modal.Body>
       </Modal>
 
       <Modal show={showClassPopup} backdrop="static" keyboard={false} centered>

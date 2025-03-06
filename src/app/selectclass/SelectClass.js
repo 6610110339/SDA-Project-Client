@@ -198,7 +198,7 @@ export default function SelectClass() {
                   cover={
                     <img
                       alt="Swordman"
-                      src="/Characters/Swordman.png"
+                      src="/Characters/SwordMan.png"
                       style={{
                         width: "100%",
                         height: "300px",
