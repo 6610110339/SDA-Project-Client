@@ -36,7 +36,7 @@ export default function Skills() {
   };
 
   const upgadeCost = {
-    Upgrade_Price: 30
+    Upgrade_Price: 15
   };
 
   useEffect(() => {

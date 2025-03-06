@@ -632,7 +632,7 @@ export default function Game() {
                               <p style={{ height: "5px" }}><strong style={{ color: "darkred" }}>💥 Damage: {charactersDamage ?? 0}</strong></p>
                               <p style={{ height: "5px" }}><strong style={{ color: "red" }}>❤️️ Health: {charactersHP ?? 0}/{charactersMaxHP ?? 0}</strong></p>
                               <p style={{ height: "5px" }}><strong style={{ color: "green" }}>🛡️ Defense: {charactersDefense}</strong></p>
-                              <p style={{ height: "5px" }}><strong style={{ color: "purple" }}>🌀 Skill Damage: x{Number(1 + (charactersBonusSkill / 100)).toFixed(2)}</strong></p>
+                              <p style={{ height: "5px" }}><strong style={{ color: "purple" }}>🌀 Skill Damage: x{Number(1 + (charactersBonusSkill / 10)).toFixed(2)}</strong></p>
                             </Card>
                           </div>
                         ) : (

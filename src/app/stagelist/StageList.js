@@ -68,8 +68,6 @@ export default function Admin() {
           setIsLoading(false);
         }
 
-        setIsLoading(false);
-
       } catch (error) {
         console.error("Error fetching user role:", error);
         setUserRole("NULL");
