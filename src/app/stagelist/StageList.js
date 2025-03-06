@@ -20,6 +20,7 @@ export default function Admin() {
   const [modalOpen, setModalOpen] = useState(false);
   const [showClassPopup, setShowClassPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCreating, setIsCreating] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
   const [selectedStage, setSelectedStage] = useState(null);
 
